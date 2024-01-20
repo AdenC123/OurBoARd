@@ -8,11 +8,11 @@ Uses simple specification from [JSend](https://github.com/omniti-labs/jsend?tab=
   - `image` : base64 encoded image
   - Response:
     - `status` : `"success"` or `"fail"` or `"error"`
-    - if status was `"error"`, `"message"` : user-readable string
+    - if status was `"error"`, `message` : user-readable string
     - `data` : `null`
 - `GET /getBoard`:
   - Response:
-      - status : `"success"` or `"fail"` or `"error"`
+      - `status` : `"success"` or `"fail"` or `"error"`
       - if status was `"error"`, `"message"` : user-readable string
       - `data` : 
         - `board` : base64 encoded board image
