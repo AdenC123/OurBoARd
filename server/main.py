@@ -20,6 +20,7 @@ def add_image():
         img_b64 = request.json.get("image")
         resized_img = image_util.resize_to_fit(img_b64)
         x, y = image_util.get_random_location(resized_img)
+        img_b64 = image_util.pil_to_b64(resized_img)
         img = Image(img_b64, x, y)
         mongo.add_image(img)
         response = flask.jsonify({

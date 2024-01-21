@@ -13,7 +13,10 @@ from constants import Image
 def pil_to_b64(img: PILImage) -> str:
     buffer = BytesIO()
     img.save(buffer, format="PNG")
-    return str(base64.b64encode(buffer.getvalue()))
+    b64 = str(base64.b64encode(buffer.getvalue()))
+    # remove extra characters
+    b64 = b64[2:-1]
+    return b64
 
 
 def b64_to_pil(img_b64: str) -> PILImage:
@@ -35,8 +38,8 @@ def resize_to_fit(img_b64: str) -> PILImage:
     else:
         # tall image
         ratio = max_height / img_height
-    new_size = int(img_height * ratio), int(img_width * ratio)
-    img.resize(new_size)
+    new_size = int(img_width * ratio), int(img_height * ratio)
+    img = img.resize(new_size)
     return img
 
 
