@@ -1,21 +1,13 @@
 import './App.css';
-import Uploader from './components/Uploader';
-import ARScene from './ARScene'
+import getBoard from "./fetch/getBoard";
+
+const [image, setIm] = getBoard();
 
 function App() {
-
   return (
     <div className="App">
       <h1>ourboARd</h1>
-      <Uploader/>
-      <ARScene />
-      
-      
-      {/* <button className="uploadFile" style={{
-        padding: 10,
-        border: 0,
-      }}>+</button> */}
-
+        <img src={image}/>
     </div>
   );
 }
