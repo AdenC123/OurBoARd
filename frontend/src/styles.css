@@ -24,6 +24,8 @@ body {
 .container {
     text-align: center;
     vertical-align: middle; /*FIX ALIGNMENT*/
+    
+    justify-content: center;
     line-height: 115px;
     border-radius: 30px;
     background: rgb(255, 255, 255,0.8);
@@ -31,6 +33,7 @@ body {
     width: 35vw;
     margin: 0px;
     font-family: "CRYSRG";
+    overflow:auto
 }
 
 .center {
@@ -57,4 +60,10 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+#logo {
+    /* max-width: fit-content;
+    max-height:max-content */
+    
 }

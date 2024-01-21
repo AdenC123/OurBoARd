@@ -15,6 +15,7 @@
 
 	<!-- JS Logic + CSS Stylesheets for the button(s) -->
 	<script src="hooks.js" ></script>
+	<link rel="icon" href="/media/icon.ico">
 	<link rel="stylesheet" href="cameraScreen.css">
 </head>
 
@@ -155,12 +156,17 @@ function animate()
 
 
 <!-- Button to trigger file input -->
-<!-- <div>
-	<input type="text" name="popup" id="popup" class="hide">
-</div> -->
+<!-- TEXT INPUT -->
+<div id="textbox">
+
+		<input type="text" name="popup" id="popup" class="input-field">
+	
+	
+	
+</div>
 <div id="buttons">
 	<button onclick="openGallery()" id="addButton" type="button">+</button>
-	<!-- <button onclick="addText()" id="addButton" type="button">T</button> -->
+	<button onclick="addText()" id="addButton" type="button">T</button>
 </div>
 
 <!-- Hidden file input -->
@@ -183,8 +189,11 @@ function animate()
 
   function addText() {
   var text = document.getElementById("popup");
+  var box = document.getElementById("textbox");
   text.classList.toggle("hide");
   text.classList.toggle("show");
+  box.classList.toggle("hide");
+  box.classList.toggle("show");
   }
 
   // Takes base64 image string, updates the board to display that image
