@@ -68,4 +68,6 @@ def build_board(images: List[Image]):
     for img in images:
         to_add = b64_to_pil(img.b64)
         board.paste(to_add, (img.x, img.y))
+    # comment out in server
+    # board.show()
     return pil_to_b64(board)

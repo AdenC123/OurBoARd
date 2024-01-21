@@ -30,6 +30,7 @@ def add_image():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
+        print(e)
         return json.dumps({
             "status": "error",
             "data": None,
@@ -50,6 +51,7 @@ def get_board():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
+        print(e)
         return json.dumps({
             "status": "error",
             "data": None,
