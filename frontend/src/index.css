@@ -17,6 +17,7 @@ code {
   bottom: 27px;
   right: 27px;
   font-size: 20px;
+  z-index: 10;
 }
 
 #addButton {
@@ -27,4 +28,5 @@ code {
   border-radius: 40px;
   border: none;
   color: #303030;
+  z-index: 10;
 }
