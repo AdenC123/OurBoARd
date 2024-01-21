@@ -5,6 +5,8 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import os
 
+from image_util import Image
+
 
 def _get_images_collection() -> pymongo.collection.Collection:
     load_dotenv()
@@ -13,24 +15,23 @@ def _get_images_collection() -> pymongo.collection.Collection:
     return client['board']['images']
 
 
-def add_image(img_b64: str, img_x: float, img_y: float):
+def add_image(img: Image):
     """
     Insert an encoded image with location to the database.
     Coordinates are relative to top left?
     """
     collection = _get_images_collection()
-    collection.insert_one({"img_b64": img_b64, "img_x": img_x, "img_y": img_y})
+    collection.insert_one({"img_b64": img.b64, "img_x": img.x, "img_y": img.y})
 
 
 # Get all
 def get_images():
     """
     Get the list of images in the database.
-    Format: "img_b64": base64 encoded image,
-            "img_x", "img_y": image coordinates
     """
     images = []
     items = _get_images_collection().find()
     for item in items:
-        images.append(item)
+        img = Image(item['img_b64'], item['img_x'], item['img_y'])
+        images.append(img)
     return images

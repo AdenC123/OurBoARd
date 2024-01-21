@@ -6,6 +6,7 @@ from pathlib import Path
 
 import mongo
 import image_util
+from image_util import Image
 
 # Constants
 SERVER_PATH = Path(__file__).parent
@@ -22,7 +23,8 @@ def add_image():
     try:
         img_b64 = request.json.get("image")
         x, y = image_util.get_random_location()
-        mongo.add_image(img_b64, x, y)
+        img = Image(img_b64, x, y)
+        mongo.add_image(img)
         return json.dumps({
             "status": "success",
             "data": None
