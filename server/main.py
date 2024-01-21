@@ -16,6 +16,15 @@ CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+# helpers
+def error_response(e: Exception) -> str:
+    return json.dumps({
+        "status": "error",
+        "data": None,
+        "message": "Internal Server Error: " + repr(e)
+    })
+
+
 # Endpoints
 @app.route('/addImage', methods=['POST'])
 def add_image():
@@ -30,15 +39,10 @@ def add_image():
             "status": "success",
             "data": None
         })
-        # response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
         print(e)
-        return json.dumps({
-            "status": "error",
-            "data": None,
-            "message": "Internal Server Error: " + repr(e)
-        })
+        return error_response(e)
 
 
 @app.route('/getBoard')
@@ -51,15 +55,10 @@ def get_board():
             "status": "success",
             "data": {"board": str(board_b64)}
         })
-        # response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
         print(e)
-        return json.dumps({
-            "status": "error",
-            "data": None,
-            "message": "Internal Server Error: " + repr(e)
-        })
+        return error_response(e)
 
 
 # Start flask API

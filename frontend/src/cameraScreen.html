@@ -120,7 +120,7 @@ function initialize()
 
 	let geometry1 = new THREE.PlaneBufferGeometry(5,5, 10,10);
 	let loader = new THREE.TextureLoader();
-	let texture = loader.load( 'images/mario.webp', render );
+	let texture = loader.load( 'images/gregor.jpeg', render );
 	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
@@ -155,9 +155,32 @@ function animate()
 
 </script>
 
+<!-- Button to trigger file input -->
 <div id="buttons">
-	<button id="addButton" type="button">+</button>
+	<button onclick="openGallery()" id="addButton" type="button">+</button>
 </div>
+
+<!-- Hidden file input -->
+<input type="file" id="galleryInput" style="display:none" accept="image/*" onchange='handleFileSelect(event)'>
+
+<script>
+  function openGallery() {
+	// Trigger the file input click event
+	console.log('openGallery() was called.')
+	document.getElementById('galleryInput').click();
+  }
+
+  function handleFileSelect(event) {
+	// Handle the selected file
+	const selectedFile = event.target.files[0];
+	
+	if (selectedFile) {
+	  // Do something with the selected file, e.g., display or process it
+	  console.log("Selected file:", selectedFile.name);
+	}
+  }
+</script>
+
 
 </body>
 </html>
