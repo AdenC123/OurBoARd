@@ -85,6 +85,5 @@ def make_note(text: str) -> PILImage:
     draw = ImageDraw.Draw(note)
     font = ImageFont.truetype(constants.NOTE_FONT_PATH, constants.NOTE_FONT_SIZE)
     draw.text(constants.NOTE_OFFSET, text, font=font, fill=constants.NOTE_FONT_COLOR)
-    # TODO remove
-    note.show()
+    # note.show()
     return note
