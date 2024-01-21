@@ -38,7 +38,7 @@ def resize_to_fit(img: PILImage) -> PILImage:
         # tall image
         ratio = max_height / img_height
     new_size = int(img_width * ratio), int(img_height * ratio)
-    img = img.resize(new_size)
+    img = img.resize(new_size, PILImage.Resampling.LANCZOS)
     return img
 
 

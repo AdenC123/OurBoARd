@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
+h1 {
+  color: white
+}
 
 @font-face {
   font-family: "CRYSRG";
@@ -33,32 +36,39 @@ code {
 
 #textbox {
   position: absolute;
-  top: 70%;
+  text-align: center;
+  top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  width: 40vw;
+  width: 90vw;
   height: 20vh;
   z-index: 10;
   background-color: rgb(149, 142, 255);
-  
-  border-radius: 50px
+  box-shadow: #303030;
+  display: none;
+  border-radius: 50px;
+
+  .hide {
+    display: none;
+  }
 
 }
 
 .input-field {
-  width: 500px;
-  height: 400px;
-  top: 0%;
-  left: 0%;
-  display: none;
-  box-shadow: none;
-  background: transparent;
-  border:none;
-  outline: none;
-  font-family: "CRYSRG";
-  font-size: 18px;
-  color: #e1d8f5;
+  display: block;
+
+  padding: 7vw;
+  padding-top: 0px;
+  top: 50%;
+  width: 85%;
+  color:#cdcce0;
   
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background: transparent;
+  font-family: "CRYSRG";
+  font-size: 20px;
 }
 
 .input-field input[type="text"] {
@@ -76,8 +86,32 @@ code {
 }
 
 
+
+.input-field::placeholder {
+  color:#bdc6e4;
+}
+
 .input-field:hover {
   cursor:text;
+}
+
+.submitbutton {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: rgb(77, 255, 130);
+  border-radius: 5px;
+  width: 20vw;
+  height: 8vh;
+  color:#303030;
+  font-family: "CRYSRG";
+  font-size: 25px;
+}
+
+
+.submitbutton:hover {
+
+  background: rgb(102, 201, 142);
 }
 
 .input-field::selection {
@@ -100,6 +134,17 @@ form {
   border-radius: 10vw;
   border: none;
   color: #ffffff;
+}  
+
+#addTextButton {
+  background: rgb(149, 142, 255);
+  width: 12vw;
+  height: 12vw;
+  font-size: 8vw;
+  border-radius: 10vw;
+  border: none;
+  color: #ffffff;
+  margin-left: 3vw;
 }
 
 #addButton:hover {
@@ -107,3 +152,11 @@ form {
   color: #303030;
   cursor: pointer;
 }
+
+#addTextButton:hover {
+  background: #bcb9ff;
+  color: #303030;
+  cursor: pointer;
+}
+
+
