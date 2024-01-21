@@ -18,7 +18,8 @@ API_PORT = 2620
 def add_image():
     try:
         img_b64 = request.json.get("image")
-        x, y = image_util.get_random_location()
+        resized_img = image_util.resize_to_fit(img_b64)
+        x, y = image_util.get_random_location(resized_img)
         img = Image(img_b64, x, y)
         mongo.add_image(img)
         response = flask.jsonify({

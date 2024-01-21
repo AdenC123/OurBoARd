@@ -18,7 +18,7 @@ def _get_images_collection() -> pymongo.collection.Collection:
 def add_image(img: Image):
     """
     Insert an encoded image with location to the database.
-    Coordinates are relative to top left?
+    Coordinates are relative to top left corner.
     """
     collection = _get_images_collection()
     collection.insert_one({"img_b64": img.b64, "img_x": img.x, "img_y": img.y})
