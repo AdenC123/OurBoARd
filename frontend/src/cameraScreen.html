@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>Hello, world!</title>
+	<title>OurBoARd</title>
 	<!-- include three.js library -->
 	<script src='three/three.js'></script>
 	<!-- include jsartookit -->
@@ -12,6 +12,10 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
+
+	<!-- JS Logic + CSS Stylesheets for the button(s) -->
+	<script src="cameraScreen.js" ></script>
+	<link rel="stylesheet" href="index.css">
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -53,6 +57,8 @@ function initialize()
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
+	// renderer.domElement.width = '400px'
+	// renderer.domElement.height = '400px'
 	document.body.appendChild( renderer.domElement );
 
 	clock = new THREE.Clock();
@@ -148,6 +154,10 @@ function animate()
 }
 
 </script>
+
+<div id="buttons">
+	<button id="addButton" type="button">+</button>
+</div>
 
 </body>
 </html>

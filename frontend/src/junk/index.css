@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#buttons {
+  position: absolute;
+  bottom: 27px;
+  right: 27px;
+  font-size: 20px;
+}
+
+#addButton {
+  background: white;
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  border-radius: 40px;
+  border: none;
+  color: #303030;
+}
