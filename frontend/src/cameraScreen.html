@@ -189,6 +189,12 @@ function animate()
 	}
   }
 
+  function handleSendText(event) {
+	  let text;
+	  // TODO: assign user input to text
+	  sendTextToServer(text, () => fetchBoardImage(renderBoard));
+  }
+
   function addText() {
   var text = document.getElementById("popup");
   var box = document.getElementById("textbox");
