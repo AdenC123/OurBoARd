@@ -1,17 +1,14 @@
-// import {addImageSlug, serverLink} from "./utils";
-
-function $(x) { return document.getElementById(x); }
-
-// FETCH BOARD IMAGE AND DO SOMETHING WITH THE FETCHED IMAGE
+// FETCH BOARD IMAGE
 function fetchBoardImage() {
     const endpoint = 'http://217.160.150.211:2620/getBoard';
 
     fetch(endpoint)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.status === 'success' && data.data && data.data.board) {
-                // TODO: DO SOMETHING WITH THE BASE64 STRING HERE
-
+                // TODO: DO SOMETHING WITH THIS BASE64 STRING
+                // displayImage(data.data.board);
             } else {
                 console.error('Failed to fetch board image.');
             }
@@ -21,7 +18,13 @@ function fetchBoardImage() {
         });
 }
 
-// ADD IMAGE
+//
+function displayImage(base64String) {
+    const imageElement = document.getElementById('boardImage');
+    console.log(base64String);
+    imageElement.src = 'data:image/png;base64,' + base64String;
+}
+
 function uploadAndSend() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
@@ -71,4 +74,3 @@ function sendBase64ToServer(base64String) {
 
 // Fetch and display board image on page load
 fetchBoardImage();
-$("uploadBtn").addEventListener("click", uploadAndSend)
