@@ -1,13 +1,18 @@
-// FETCH BOARD IMAGE
-function fetchBoardImage() {
-    const endpoint = 'http://217.160.150.211:2620/getBoard';
+window.addEventListener("load", (event) => {
+    console.log("page is fully loaded");
+    fetchBoardImage(renderBoard);
+});
 
+// FETCH BOARD IMAGE
+function fetchBoardImage(fnCallback) {
+    const endpoint = 'http://217.160.150.211:2620/getBoard';
+    console.log("fetching");
     fetch(endpoint)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.data && data.data.board) {
                 // TODO: DO SOMETHING WITH THIS BASE64 STRING
-                document.getElementById("boardImage").src = "data:image/png;base64," + data.data.board;
+                fnCallback(data.data.board);
                 // console.log(data.data.board);
             } else {
                 console.error('Failed to fetch board image.');
@@ -18,27 +23,17 @@ function fetchBoardImage() {
         });
 }
 
-// UPLOAD IMAGE AND SEND TO SERVER
-function uploadAndSend() {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-
-    if (!file) {
-        alert('Please select a PNG file.');
-        return;
-    }
-
+// CONVERT IMAGE AND SEND TO SERVER
+function convertImageToBase64(inputFile, fnCallback) {
     const reader = new FileReader();
-
     reader.onload = function (e) {
         const base64String = e.target.result.split(',')[1];
-        sendBase64ToServer(base64String);
+        sendBase64ToServer(base64String, fnCallback);
     };
-
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(inputFile);
 }
 
-function sendBase64ToServer(base64String) {
+function sendBase64ToServer(base64String, fnCallback) {
     const endpoint = 'http://217.160.150.211:2620/addImage';
     console.log(base64String);
     fetch(endpoint, {
@@ -56,7 +51,8 @@ function sendBase64ToServer(base64String) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                alert('Image uploaded successfully.');
+                alert("Image uploaded successfully");
+                fnCallback();
             } else {
                 console.error('Failed to upload image.');
             }
@@ -65,7 +61,3 @@ function sendBase64ToServer(base64String) {
             console.error('Error uploading image', error);
         });
 }
-
-
-// Fetch and display board image on page load
-document.getElementById("uploadBtn").addEventListener("click", uploadAndSend);
