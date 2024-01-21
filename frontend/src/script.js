@@ -5,9 +5,11 @@ window.addEventListener("load", (event) => {
 
 // FETCH BOARD IMAGE
 function fetchBoardImage(fnCallback) {
-    const endpoint = 'https://217.160.150.211:2620/getBoard';
+    const endpoint = 'https://106c-217-160-150-211.ngrok-free.app/getBoard';
     console.log("fetching");
-    fetch(endpoint)
+    fetch(endpoint, {
+        headers: {'ngrok-skip-browser-warning': 0}
+    })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.data && data.data.board) {
@@ -34,7 +36,7 @@ function convertImageToBase64(inputFile, fnCallback) {
 }
 
 function sendBase64ToServer(base64String, fnCallback) {
-    const endpoint = 'https://217.160.150.211:2620/addImage';
+    const endpoint = 'https://106c-217-160-150-211.ngrok-free.app/addImage';
     console.log(base64String);
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -42,7 +44,8 @@ function sendBase64ToServer(base64String, fnCallback) {
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 0
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
