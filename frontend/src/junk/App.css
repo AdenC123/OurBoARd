@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -11,5 +11,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+} */
+
+body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
