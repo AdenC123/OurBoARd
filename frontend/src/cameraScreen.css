@@ -14,25 +14,25 @@ code {
 
 #buttons {
   position: absolute;
-  bottom: 30px;
-  right: 40vw;
+  top: 85%;
+  right: 50%;
   font-size: 20px;
   z-index: 10;
 }
 
 #addButton {
-  background: white;
+  background: rgb(149, 142, 255);
   width: 90px;
   height: 90px;
   font-size: 60px;
   border-radius: 80px;
   border: none;
-  color: #303030;
-  /* position: absolute;
-  right: 0px; */
+  color: #ffffff;
 }
 
 #addButton:hover {
-  background: #e0e0e0;
+  background: #bcb9ff;
   color: #303030;
+  cursor: pointer;
+
 }

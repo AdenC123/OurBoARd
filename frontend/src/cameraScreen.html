@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>OurBoARd</title>
+	<title>ourboARd</title>
 	<!-- include three.js library -->
 	<script src='three/three.js'></script>
 	<!-- include jsartookit -->
@@ -15,7 +15,7 @@
 
 	<!-- JS Logic + CSS Stylesheets for the button(s) -->
 	<script src="cameraScreen.js" ></script>
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="cameraScreen.css">
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -155,9 +155,14 @@ function animate()
 
 </script>
 
+
 <!-- Button to trigger file input -->
+<!-- <div>
+	<input type="text" name="popup" id="popup" class="hide">
+</div> -->
 <div id="buttons">
 	<button onclick="openGallery()" id="addButton" type="button">+</button>
+	<!-- <button onclick="addText()" id="addButton" type="button">T</button> -->
 </div>
 
 <!-- Hidden file input -->
@@ -178,6 +183,13 @@ function animate()
 	  // Do something with the selected file, e.g., display or process it
 	  console.log("Selected file:", selectedFile.name);
 	}
+  }
+
+  function addText() {
+  var text = document.getElementById("popup");
+  text.classList.toggle("hide");
+  text.classList.toggle("show");
+
   }
 </script>
 
