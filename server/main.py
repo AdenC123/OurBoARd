@@ -4,6 +4,9 @@ from flask import Flask, request
 import json
 from pathlib import Path
 
+import mongo
+import image_util
+
 # Constants
 SERVER_PATH = Path(__file__).parent
 BOARD_PATH = SERVER_PATH / 'data/board.png'
@@ -16,10 +19,10 @@ API_PORT = 2620
 # Endpoints
 @app.route('/addImage', methods=['POST'])
 def add_image():
-    # TODO proof of concept, print b64
     try:
         img_b64 = request.json.get("image")
-        print('Image recieved: ' + img_b64)
+        x, y = image_util.get_random_location()
+        mongo.add_image(img_b64, x, y)
         return json.dumps({
             "status": "success",
             "data": None
