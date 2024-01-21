@@ -5,10 +5,10 @@ function fetchBoardImage() {
     fetch(endpoint)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data.status === 'success' && data.data && data.data.board) {
                 // TODO: DO SOMETHING WITH THIS BASE64 STRING
-                // displayImage(data.data.board);
+                document.getElementById("boardImage").src = "data:image/png;base64," + data.data.board;
+                // console.log(data.data.board);
             } else {
                 console.error('Failed to fetch board image.');
             }
@@ -18,13 +18,7 @@ function fetchBoardImage() {
         });
 }
 
-//
-function displayImage(base64String) {
-    const imageElement = document.getElementById('boardImage');
-    console.log(base64String);
-    imageElement.src = 'data:image/png;base64,' + base64String;
-}
-
+// UPLOAD IMAGE AND SEND TO SERVER
 function uploadAndSend() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
@@ -46,17 +40,18 @@ function uploadAndSend() {
 
 function sendBase64ToServer(base64String) {
     const endpoint = 'http://217.160.150.211:2620/addImage';
-
+    console.log(base64String);
     fetch(endpoint, {
-        method: 'POST',
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            data: {
-                image: base64String,
-            },
-        }),
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify({image: base64String}),
     })
         .then(response => response.json())
         .then(data => {
@@ -67,10 +62,10 @@ function sendBase64ToServer(base64String) {
             }
         })
         .catch(error => {
-            console.error('Error uploading image:', error);
+            console.error('Error uploading image', error);
         });
 }
 
 
 // Fetch and display board image on page load
-fetchBoardImage();
+document.getElementById("uploadBtn").addEventListener("click", uploadAndSend);
