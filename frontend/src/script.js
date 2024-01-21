@@ -5,7 +5,7 @@ window.addEventListener("load", (event) => {
 
 // FETCH BOARD IMAGE
 function fetchBoardImage(fnCallback) {
-    const endpoint = 'https://d598-217-160-150-211.ngrok-free.app/getBoard';
+    const endpoint = 'https://b9f1-217-160-150-211.ngrok-free.app/getBoard';
     console.log("fetching");
     fetch(endpoint, {
         headers: {'ngrok-skip-browser-warning': 0}
@@ -36,7 +36,7 @@ function convertImageToBase64(inputFile, fnCallback) {
 }
 
 function sendBase64ToServer(base64String, fnCallback) {
-    const endpoint = 'https://d598-217-160-150-211.ngrok-free.app/addImage';
+    const endpoint = 'https://b9f1-217-160-150-211.ngrok-free.app/addImage';
     console.log(base64String);
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
