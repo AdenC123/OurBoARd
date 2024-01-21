@@ -1,0 +1,12 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #1475cf;
+    width: 45vw;
+    height: 30vh;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
