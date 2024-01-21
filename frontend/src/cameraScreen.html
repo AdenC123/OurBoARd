@@ -161,14 +161,23 @@ function animate()
 <!-- TEXT INPUT -->
 <div id="textbox">
 
-		<input type="text" name="popup" id="popup" class="input-field">
+	<div id="textcontent">
+
+		<h1>Create sticky note...</h1>
+
+		<input type="text" name="popup" id="popup" class="input-field" placeholder="Enter your note here...">
+	</div>
+
+	<button class="submitbutton">
+		ADD
+	</button>
 	
 	
 	
 </div>
 <div id="buttons">
 	<button onclick="openGallery()" id="addButton" type="button">+</button>
-	<button onclick="addText()" id="addButton" type="button">T</button>
+	<button onclick="addText()" id="addTextButton" type="button">T</button>
 </div>
 
 <!-- Hidden file input -->
@@ -190,12 +199,20 @@ function animate()
   }
 
   function addText() {
-  var text = document.getElementById("popup");
-  var box = document.getElementById("textbox");
-  text.classList.toggle("hide");
-  text.classList.toggle("show");
-  box.classList.toggle("hide");
-  box.classList.toggle("show");
+	var x = document.getElementById("textbox");
+	var y = document.getElementById("popup");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  } if (y.style.display === "none") {
+    y.style.display = "block";
+
+  } else {
+    y.style.display = "none";
+	// add text
+	//turn back to text button
+  }
   }
 
   // Takes base64 image string, updates the board to display that image
