@@ -1,4 +1,5 @@
 # Starts API
+import flask
 from flask import Flask, request
 import json
 
@@ -20,10 +21,12 @@ def add_image():
         x, y = image_util.get_random_location()
         img = Image(img_b64, x, y)
         mongo.add_image(img)
-        return json.dumps({
+        response = flask.jsonify({
             "status": "success",
             "data": None
         })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     except Exception as e:
         return json.dumps({
             "status": "error",
@@ -38,10 +41,12 @@ def get_board():
     try:
         imgs = mongo.get_images()
         board_b64 = image_util.build_board(imgs)
-        return json.dumps({
+        response = flask.jsonify({
             "status": "success",
             "data": {"board": str(board_b64)}
         })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     except Exception as e:
         return json.dumps({
             "status": "error",
