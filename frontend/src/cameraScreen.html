@@ -178,10 +178,23 @@ function animate()
 	
 	if (selectedFile) {
 	  // Do something with the selected file, e.g., display or process it
-	  console.log("Selected file:", selectedFile.name);
+		convertImageToBase64(selectedFile, sendBase64ToServer);
+		console.log("Selected file:", selectedFile.name);
 	}
   }
 
+  function convertImageToBase64(inputFile, callback) {
+	  const reader = new FileReader();
+
+		  reader.onload = function (e) {
+			  const base64String = e.target.result.split(',')[1];
+			  callback(base64String);
+		  };
+
+		  reader.readAsDataURL(inputFile);
+  }
+
+  // Fetch board from backend and render it
   function renderBoard(imgString) {
 	  console.log("rendered");
 	  let loader = new THREE.TextureLoader();
