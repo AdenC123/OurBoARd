@@ -5,7 +5,7 @@ window.addEventListener("load", (event) => {
 
 // FETCH BOARD IMAGE
 function fetchBoardImage(fnCallback) {
-    const endpoint = 'http://217.160.150.211:2620/getBoard';
+    const endpoint = 'https://217.160.150.211:2620/getBoard';
     console.log("fetching");
     fetch(endpoint)
         .then(response => response.json())
@@ -34,7 +34,7 @@ function convertImageToBase64(inputFile, fnCallback) {
 }
 
 function sendBase64ToServer(base64String, fnCallback) {
-    const endpoint = 'http://217.160.150.211:2620/addImage';
+    const endpoint = 'https://217.160.150.211:2620/addImage';
     console.log(base64String);
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
