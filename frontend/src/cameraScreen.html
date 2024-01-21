@@ -200,7 +200,6 @@ function animate()
 
   function handleSendText(event) {
 	  let text = document.getElementById("popup").value;
-	  console.log(text);
 	  sendTextToServer(text, () => fetchBoardImage(renderBoard));
 	  let x = document.getElementById("textbox");
 	  let y = document.getElementById("popup");
