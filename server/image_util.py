@@ -79,11 +79,20 @@ def make_note(text: str) -> PILImage:
     """
     if len(text) > constants.NOTE_CHARACTER_LIMIT:
         raise TextException(f'Text is too long ({len(text)} characters)')
-    # TODO add newlines
+    # add newlines
+    words = text.split()
+    char_count = 0
+    for i in range(len(words)):
+        if char_count > constants.NOTE_CHARACTERS_NEWLINE:
+            words[i] = '\n' + words[i]
+            char_count = -1
+        char_count += len(words[i])
+    text = ' '.join(words)
+    # create note image
     note = PILImage.open(constants.NOTE_PATH)
     note = resize_to_fit(note)
     draw = ImageDraw.Draw(note)
     font = ImageFont.truetype(constants.NOTE_FONT_PATH, constants.NOTE_FONT_SIZE)
     draw.text(constants.NOTE_OFFSET, text, font=font, fill=constants.NOTE_FONT_COLOR)
-    # note.show()
+    note.show()
     return note
