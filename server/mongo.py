@@ -5,7 +5,7 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import os
 
-from image_util import Image
+from constants import Image
 
 
 def _get_images_collection() -> pymongo.collection.Collection:

@@ -1,16 +1,11 @@
 # Starts API
-import base64
 from flask import Flask, request
 import json
-from pathlib import Path
 
 import mongo
 import image_util
 from image_util import Image
 
-# Constants
-SERVER_PATH = Path(__file__).parent
-BOARD_PATH = SERVER_PATH / 'data/board.png'
 
 # Init flask
 app = Flask(__name__)
@@ -39,14 +34,14 @@ def add_image():
 
 @app.route('/getBoard')
 def get_board():
-    # TODO proof of concept, serve static board image
+    # TODO use cache to make this faster
     try:
-        with BOARD_PATH.open('rb') as f:
-            board_b64 = base64.b64encode(f.read())
-            return json.dumps({
-                "status": "success",
-                "data": {"board": str(board_b64)}
-            })
+        imgs = mongo.get_images()
+        board_b64 = image_util.build_board(imgs)
+        return json.dumps({
+            "status": "success",
+            "data": {"board": str(board_b64)}
+        })
     except Exception as e:
         return json.dumps({
             "status": "error",
