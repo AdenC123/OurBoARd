@@ -1,5 +1,5 @@
 // FETCH BOARD IMAGE
-function fetchBoardImage() {
+function fetchBoardImage(fnRenderBoard) {
     const endpoint = 'http://217.160.150.211:2620/getBoard';
 
     fetch(endpoint)
@@ -7,7 +7,7 @@ function fetchBoardImage() {
         .then(data => {
             if (data.status === 'success' && data.data && data.data.board) {
                 // TODO: DO SOMETHING WITH THIS BASE64 STRING
-                document.getElementById("boardImage").src = "data:image/png;base64," + data.data.board;
+                fnRenderBoard(data.data.board);
                 // console.log(data.data.board);
             } else {
                 console.error('Failed to fetch board image.');
