@@ -86,4 +86,4 @@ def get_board():
 
 
 # Start flask API
-app.run(port=API_PORT, host="0.0.0.0")
+app.run(port=API_PORT, host="0.0.0.0", ssl_context='adhoc')
