@@ -62,16 +62,14 @@ button:hover {
     cursor: pointer;
 }
 
-<<<<<<< HEAD:frontend/src/homeScreen.css
 #startButton {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-=======
+}
 #logo {
     /* max-width: fit-content;
     max-height:max-content */
     
->>>>>>> 2a400159a4f7ccb77c25e9bd62e3b1ca07d81e3f:frontend/src/styles.css
 }
