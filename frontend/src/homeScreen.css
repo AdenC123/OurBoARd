@@ -58,3 +58,10 @@ button {
 button:hover {
     cursor: pointer;
 }
+
+#startButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
