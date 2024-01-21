@@ -7,6 +7,7 @@ import json
 import mongo
 import image_util
 from image_util import Image
+from constants import TextException
 
 
 # Init flask
@@ -30,14 +31,37 @@ def error_response(e: Exception) -> str:
 def add_image():
     try:
         img_b64 = request.json.get("image")
-        resized_img = image_util.resize_to_fit(img_b64)
+        resized_img = image_util.resize_to_fit(image_util.b64_to_pil(img_b64))
         x, y = image_util.get_random_location(resized_img)
         img_b64 = image_util.pil_to_b64(resized_img)
-        img = Image(img_b64, x, y)
-        mongo.add_image(img)
+        mongo.add_image(Image(img_b64, x, y))
         response = flask.jsonify({
             "status": "success",
             "data": None
+        })
+        return response
+    except Exception as e:
+        print(e)
+        return error_response(e)
+
+
+@app.route('/addNote', methods=['POST'])
+def add_note():
+    try:
+        text = request.json.get("text")
+        note_img = image_util.make_note(text)
+        note_b64 = image_util.pil_to_b64(note_img)
+        x, y = image_util.get_random_location(note_img)
+        mongo.add_image(Image(note_b64, x, y))
+        response = flask.jsonify({
+            "status": "success",
+            "data": None
+        })
+        return response
+    except TextException as e:
+        response = flask.jsonify({
+            "status": "fail",
+            "data": {"text": e.message}
         })
         return response
     except Exception as e:
