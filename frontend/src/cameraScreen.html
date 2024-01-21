@@ -29,15 +29,13 @@
 <script>
 
 var scene, camera, renderer, clock, deltaTime, totalTime;
-
 var arToolkitSource, arToolkitContext;
-
 var markerRoot1;
-
 var mesh1;
 
 initialize();
 animate();
+fetchBoardImage(renderBoard);
 
 function initialize()
 {
@@ -178,20 +176,9 @@ function animate()
 	
 	if (selectedFile) {
 	  // Do something with the selected file, e.g., display or process it
-		convertImageToBase64(selectedFile, sendBase64ToServer);
+		convertImageToBase64(selectedFile, () => fetchBoardImage(renderBoard));
 		console.log("Selected file:", selectedFile.name);
 	}
-  }
-
-  function convertImageToBase64(inputFile, callback) {
-	  const reader = new FileReader();
-
-		  reader.onload = function (e) {
-			  const base64String = e.target.result.split(',')[1];
-			  callback(base64String);
-		  };
-
-		  reader.readAsDataURL(inputFile);
   }
 
   // Fetch board from backend and render it
@@ -202,6 +189,7 @@ function animate()
 	  let texture = loader.load('data:image/png;base64,' + imgString, render );
 	  let newMaterial = new THREE.MeshBasicMaterial({ map: texture });
 	  mesh1.material = newMaterial;
+	  console.log("loaded");
 	  render();
   }
 </script>
