@@ -1,6 +1,7 @@
 # Starts API
 import flask
 from flask import Flask, request
+from flask_cors import CORS
 import json
 
 import mongo
@@ -9,8 +10,10 @@ from image_util import Image
 
 
 # Init flask
-app = Flask(__name__)
 API_PORT = 2620
+app = Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 # Endpoints
@@ -27,7 +30,7 @@ def add_image():
             "status": "success",
             "data": None
         })
-        response.headers.add('Access-Control-Allow-Origin', '*')
+        # response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
         print(e)
@@ -48,7 +51,7 @@ def get_board():
             "status": "success",
             "data": {"board": str(board_b64)}
         })
-        response.headers.add('Access-Control-Allow-Origin', '*')
+        # response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
         print(e)
