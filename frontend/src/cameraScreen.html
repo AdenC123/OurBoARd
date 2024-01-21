@@ -168,7 +168,7 @@ function animate()
 		<input type="text" name="popup" id="popup" class="input-field" placeholder="Enter your note here...">
 	</div>
 
-	<button class="submitbutton">
+	<button class="submitbutton" onclick="handleSendText()">
 		ADD
 	</button>
 	
@@ -177,7 +177,7 @@ function animate()
 </div>
 <div id="buttons">
 	<button onclick="openGallery()" id="addButton" type="button">+</button>
-	<button onclick="addText()" id="addButton" type="button">T</button>
+	<button onclick="addText()" id="addTextButton" type="button">T</button>
 </div>
 
 <!-- Hidden file input -->
@@ -199,11 +199,14 @@ function animate()
   }
 
   function handleSendText(event) {
-	  let text;
-	  // TODO: assign user input to text
+	  let text = document.getElementById("popup").value;
+	  console.log(text);
 	  sendTextToServer(text, () => fetchBoardImage(renderBoard));
+	  let x = document.getElementById("textbox");
+	  let y = document.getElementById("popup");
+	  x.style.display = "none";
+	  y.style.display = "none";
   }
-
   function addText() {
 	var x = document.getElementById("textbox");
 	var y = document.getElementById("popup");
