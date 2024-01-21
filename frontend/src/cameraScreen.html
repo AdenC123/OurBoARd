@@ -14,8 +14,13 @@
 	<script src="threex/threex-armarkercontrols.js"></script>
 
 	<!-- JS Logic + CSS Stylesheets for the button(s) -->
+<<<<<<< HEAD
 	<script src="cameraScreen.js" ></script>
 	<link rel="stylesheet" href="cameraScreen.css">
+=======
+	<script src="hooks.js" ></script>
+	<link rel="stylesheet" href="index.css">
+>>>>>>> 9041375ba58490736116791159d00e66084cc429
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -28,15 +33,13 @@
 <script>
 
 var scene, camera, renderer, clock, deltaTime, totalTime;
-
 var arToolkitSource, arToolkitContext;
-
 var markerRoot1;
-
 var mesh1;
 
 initialize();
 animate();
+
 
 function initialize()
 {
@@ -171,7 +174,6 @@ function animate()
 <script>
   function openGallery() {
 	// Trigger the file input click event
-	console.log('openGallery() was called.')
 	document.getElementById('galleryInput').click();
   }
 
@@ -180,8 +182,7 @@ function animate()
 	const selectedFile = event.target.files[0];
 	
 	if (selectedFile) {
-	  // Do something with the selected file, e.g., display or process it
-	  console.log("Selected file:", selectedFile.name);
+		convertImageToBase64(selectedFile, () => fetchBoardImage(renderBoard));
 	}
   }
 
@@ -189,7 +190,16 @@ function animate()
   var text = document.getElementById("popup");
   text.classList.toggle("hide");
   text.classList.toggle("show");
+  }
 
+  // Takes base64 image string, updates the board to display that image
+  function renderBoard(imgString) {
+	  let loader = new THREE.TextureLoader();
+	  let texture = loader.load('data:image/png;base64,' + imgString, render );
+	  let newMaterial = new THREE.MeshBasicMaterial({ map: texture });
+	  mesh1.material = newMaterial;
+	  console.log("loaded");
+	  render();
   }
 </script>
 

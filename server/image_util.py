@@ -1,13 +1,13 @@
 # Handles images and the board
 import random
 
-from PIL import Image as PILImage
+from PIL import Image as PILImage, ImageFont, ImageDraw
 from typing import List
 from io import BytesIO
 import base64
 
 import constants
-from constants import Image
+from constants import Image, TextException
 
 
 def pil_to_b64(img: PILImage) -> str:
@@ -23,9 +23,8 @@ def b64_to_pil(img_b64: str) -> PILImage:
     return PILImage.open(BytesIO(base64.b64decode(img_b64)))
 
 
-def resize_to_fit(img_b64: str) -> PILImage:
+def resize_to_fit(img: PILImage) -> PILImage:
     """Resize img to fit inside background and return as PIL image."""
-    img = b64_to_pil(img_b64)
     background = PILImage.open(constants.BACKGROUND_PATH)
     bg_width, bg_height = background.size
     img_width, img_height = img.size
@@ -71,3 +70,20 @@ def build_board(images: List[Image]):
     # comment out in server
     # board.show()
     return pil_to_b64(board)
+
+
+def make_note(text: str) -> PILImage:
+    """
+    Create a sticky note image with given text and return it.
+    Should be dynamically sized based on background.
+    """
+    if len(text) > constants.NOTE_CHARACTER_LIMIT:
+        raise TextException(f'Text is too long ({len(text)} characters)')
+    # TODO add newlines
+    note = PILImage.open(constants.NOTE_PATH)
+    note = resize_to_fit(note)
+    draw = ImageDraw.Draw(note)
+    font = ImageFont.truetype(constants.NOTE_FONT_PATH, constants.NOTE_FONT_SIZE)
+    draw.text(constants.NOTE_OFFSET, text, font=font, fill=constants.NOTE_FONT_COLOR)
+    # note.show()
+    return note
