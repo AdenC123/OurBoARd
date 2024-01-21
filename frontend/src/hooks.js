@@ -1,7 +1,12 @@
+window.addEventListener("load", (event) => {
+    console.log("page is fully loaded");
+    fetchBoardImage(renderBoard);
+});
+
 // FETCH BOARD IMAGE
 function fetchBoardImage(fnCallback) {
     const endpoint = 'http://217.160.150.211:2620/getBoard';
-
+    console.log("fetching");
     fetch(endpoint)
         .then(response => response.json())
         .then(data => {
@@ -18,7 +23,7 @@ function fetchBoardImage(fnCallback) {
         });
 }
 
-// UPLOAD IMAGE AND SEND TO SERVER
+// CONVERT IMAGE AND SEND TO SERVER
 function convertImageToBase64(inputFile, fnCallback) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -46,7 +51,7 @@ function sendBase64ToServer(base64String, fnCallback) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                alert("success");
+                alert("Image uploaded successfully");
                 fnCallback();
             } else {
                 console.error('Failed to upload image.');
