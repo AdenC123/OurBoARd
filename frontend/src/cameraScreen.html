@@ -158,6 +158,7 @@ function animate()
 <!-- Button to trigger file input -->
 <div id="buttons">
 	<button onclick="openGallery()" id="addButton" type="button">+</button>
+	<button onclick="renderBoard()" id="loadButton" type="button">Load</button>
 </div>
 
 <!-- Hidden file input -->
@@ -178,6 +179,16 @@ function animate()
 	  // Do something with the selected file, e.g., display or process it
 	  console.log("Selected file:", selectedFile.name);
 	}
+  }
+
+  function renderBoard(imgString) {
+	  console.log("rendered");
+	  let loader = new THREE.TextureLoader();
+	  // let texture = loader.load( 'images/earth.jpg', render );
+	  let texture = loader.load('data:image/png;base64,' + imgString, render );
+	  let newMaterial = new THREE.MeshBasicMaterial({ map: texture });
+	  mesh1.material = newMaterial;
+	  render();
   }
 </script>
 
