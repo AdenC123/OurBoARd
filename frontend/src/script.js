@@ -5,11 +5,10 @@ window.addEventListener("load", (event) => {
 
 // FETCH BOARD IMAGE
 function fetchBoardImage(fnCallback) {
-    const endpoint = 'https://b9f1-217-160-150-211.ngrok-free.app/getBoard';
+    const endpoint = 'https://9bd9-217-160-150-211.ngrok-free.app/getBoard';
     console.log("fetching");
     fetch(endpoint, {
-        headers: {'ngrok-skip-browser-warning': 0,
-        mode: 'no-cors'}
+        headers: {'ngrok-skip-browser-warning': 0}
     })
         .then(response => response.json())
         .then(data => {
@@ -37,11 +36,11 @@ function convertImageToBase64(inputFile, fnCallback) {
 }
 
 function sendBase64ToServer(base64String, fnCallback) {
-    const endpoint = 'https://2940-217-160-150-211.ngrok-free.app/addImage';
+    const endpoint = 'https://9bd9-217-160-150-211.ngrok-free.app/addImage';
     console.log(base64String);
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'no-cors', // no-cors, *cors, same-origin
+        mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
