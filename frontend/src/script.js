@@ -67,7 +67,7 @@ function sendBase64ToServer(base64String, fnCallback) {
 
 // SEND TEXT TO SERVER
 function sendTextToServer(string, fnCallback) {
-    const endpoint = 'https://2940-217-160-150-211.ngrok-free.app/addNote';
+    const endpoint = 'https://9bd9-217-160-150-211.ngrok-free.app/addNote';
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
