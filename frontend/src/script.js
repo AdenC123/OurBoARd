@@ -8,7 +8,8 @@ function fetchBoardImage(fnCallback) {
     const endpoint = 'https://b9f1-217-160-150-211.ngrok-free.app/getBoard';
     console.log("fetching");
     fetch(endpoint, {
-        headers: {'ngrok-skip-browser-warning': 0}
+        headers: {'ngrok-skip-browser-warning': 0,
+        mode: 'no-cors'}
     })
         .then(response => response.json())
         .then(data => {
@@ -40,7 +41,7 @@ function sendBase64ToServer(base64String, fnCallback) {
     console.log(base64String);
     fetch(endpoint, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
+        mode: 'no-cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
