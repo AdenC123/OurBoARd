@@ -1,5 +1,5 @@
 # OurBoARd
-NWHacks 2024
+Won Honourable mention for the Community & Connection Track AND Best Beginner Hack at NWHacks 2024 🎉
 
 ## API Specification
 Uses simple specification from [JSend](https://github.com/omniti-labs/jsend?tab=readme-ov-file#so-how-does-it-work).
