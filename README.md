@@ -3,7 +3,7 @@ Post your photos onto an AR bulletin board for everyone to see! 🖼️
 <br>
 Won Honourable mention for the Community & Connection Track AND Best Beginner Hack at NWHacks 2024. 🏆
 
-devPost: https://devpost.com/software/ourboard
+devpost: https://devpost.com/software/ourboard
 <br>
 live site: https://ourboard-nw.netlify.app/ (only responsive for mobile)
 
